@@ -17,7 +17,9 @@ page = """
 # GuardGoose
 <|{text}|>
 <br></br>
-<|button|class_name=plain|label=Activate Goose|on_action=activate_goose|> <|button|class_name=plain|label=I'm Back|on_action=deactivate_goose|>
+<|button|class_name=fullwidth plain|label=Activate Goose|on_action=activate_goose|> 
+
+<|button|class_name=fullwidth plain|label=I'm Back|on_action=deactivate_goose|>
 
 """
 
