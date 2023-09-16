@@ -59,22 +59,41 @@ int prev_dist1, prev_dist2 = 500;
 int dist_threshold = 200;
 int avg_dist = 500;
 
-void loop() {
+bool device_on = true;
+int appData = -1;
+
+void loop() {  
+  if (Serial.available() > 0) {
+    appData = Serial.read();
+    // Serial.println(appData);
+  }
+  if (appData == 1) {
+    device_on = true;
+  } else if (appData == 0) {
+    device_on = false;
+  }
+
+  if (device_on) {
+    run_device();    
+  } else {
+    redEyesOn(false);
+  }
+
+}
+
+void run_device() {
   /* Laptop has been moved */
   // if the laptop screen is physically tilted (movement is detected), then red eyes and honking
   imu::Vector<3> accel_value = bno.getVector(Adafruit_BNO055::VECTOR_ACCELEROMETER);
   
-  Serial.print("accel values: ");
+  /* Serial.print("accel values: ");
   Serial.print(accel_value.x());
   Serial.print(", ");
   Serial.print(accel_value.y());
   Serial.print(", ");
-  Serial.println(accel_value.z());
+  Serial.println(accel_value.z()); */
   if (accel_value.x()>=prev_xaccel){
-    digitalWrite(HONK_BUZZER,HIGH);
-    Serial.print("light on");
-    delay(1000);
-    digitalWrite(HONK_BUZZER, LOW);
+    theftAlert();
   }
   prev_xaccel = accel_value.x();
   prev_yaccel = accel_value.y();
@@ -83,20 +102,31 @@ void loop() {
   /* Someone is approaching the laptop */
   int distance = tof.read();
   if (tof.timeoutOccurred()) { Serial.print(" TIMEOUT"); }
-  Serial.print("distance (mm): ");
-  Serial.println(distance);
+  /* Serial.print("distance (mm): ");
+  Serial.println(distance); */
 
   avg_dist = (prev_dist1 + prev_dist2 + distance) / 3;
   prev_dist2 = prev_dist1;
   prev_dist1 = distance;
 
   if (avg_dist < dist_threshold) {
+    suspiciousAlert();
     redEyesOn(true);
   } else {
     redEyesOn(false);
   }
   delay(1000);
+}
 
+void suspiciousAlert() {
+  Serial.print(2);
+}
+
+void theftAlert() {
+  Serial.print(3);
+  digitalWrite(HONK_BUZZER,HIGH);
+  delay(1000);
+  digitalWrite(HONK_BUZZER, LOW);
 }
 
 void redEyesOn(bool on) {
