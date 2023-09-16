@@ -21,8 +21,6 @@ turnOn()
 while True:
     serial.write((deviceStatus).to_bytes(1, byteorder='big'))
     arduinoData = serial.read()
-    #arduinoData = int(arduinoRawData.decode('utf-8'))
-    print(arduinoData)
 
     if (arduinoData == b'3'):
         # theft alert
