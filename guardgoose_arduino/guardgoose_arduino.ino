@@ -92,9 +92,7 @@ void run_device() {
   Serial.print(accel_value.y());
   Serial.print(", ");
   Serial.println(accel_value.z()); */
-  if (accel_value.x()>=prev_xaccel){
-    theftAlert();
-  }
+  
   prev_xaccel = accel_value.x();
   prev_yaccel = accel_value.y();
   prev_zaccel = accel_value.z();
@@ -109,9 +107,12 @@ void run_device() {
   prev_dist2 = prev_dist1;
   prev_dist1 = distance;
 
-  if (avg_dist < dist_threshold) {
+
+  /* check values and send alert if necessary */
+  if (accel_value.x()>=prev_xaccel){
+    theftAlert();
+  } else if (avg_dist < dist_threshold) {
     suspiciousAlert();
-    redEyesOn(true);
   } else {
     redEyesOn(false);
   }
@@ -119,6 +120,7 @@ void run_device() {
 }
 
 void suspiciousAlert() {
+  redEyesOn(true);
   Serial.print(2);
 }
 

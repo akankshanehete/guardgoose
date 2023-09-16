@@ -20,11 +20,13 @@ turnOn()
 # serial comms
 while True:
     serial.write((deviceStatus).to_bytes(1, byteorder='big'))
-    arduinoData = (serial.readline())
-    if (arduinoData == 3):
-        theftAlert = True
+    arduinoData = serial.read()
+    #arduinoData = int(arduinoRawData.decode('utf-8'))
+    print(arduinoData)
+
+    if (arduinoData == b'3'):
+        # theft alert
         print('t')
-    elif (arduinoData == 2):
-        suspiciousActivity = True
+    elif (arduinoData == b'2'):
+        # suspicious activity
         print('s')
-    
