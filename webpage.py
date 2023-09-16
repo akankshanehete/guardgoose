@@ -1,25 +1,21 @@
-from taipy.gui import Gui, notify
+from taipy.gui import Gui, notify, navigate
 import pandas as pd
 
 
 text = "Protecting your study space, one honk at a time!"
 
-stylekit = {
-  "light_goose_cream": "#e8ddc0",
-  "dark_brown_goose": "#5f5145",
-  "light_goose_tan": "#bfb299",
-  "goose_black": "#2d2a29",
-  "medium_goose_brown": "#756c5f",
-}
-
 # Definition of the page
 page = """
 # GuardGoose
-<|{text}|>
+<|{text}|class_name=title-text|>
 <br></br>
-<|button|class_name=fullwidth plain|label=Activate Goose|on_action=activate_goose|> 
 
-<|button|class_name=fullwidth plain|label=I'm Back|on_action=deactivate_goose|>
+<|goose.png|image|label=this is an image|class_name=image|>
+<br></br>
+<|button|class_name=fullwidth plain|id=activate-goose-btn|label=Activate Goose|on_action=activate_goose|> 
+
+<|button|class_name=fullwidth plain|id=deactivate-goose-btn|label=I'm Back|on_action=deactivate_goose|>
+
 
 """
 
@@ -35,5 +31,11 @@ def on_change(state, var_name, var_value):
     if var_name == "text" and var_value == "Reset":
         state.text = ""
         return
+    
 
-Gui(page).run(dark_mode=False)
+
+Gui(page, css_file="styles.css").run(dark_mode=False)
+
+
+
+
