@@ -1,19 +1,27 @@
-from taipy import Gui, notify
+from taipy.gui import Gui, notify
 import pandas as pd
 
-text = "Original text"
+
+text = "Protecting your study space, one honk at a time!"
+
+stylekit = {
+  "light_goose_cream": "#e8ddc0",
+  "dark_brown_goose": "#5f5145",
+  "light_goose_tan": "#bfb299",
+  "goose_black": "#2d2a29",
+  "medium_goose_brown": "#756c5f",
+
+}
 
 # Definition of the page
 page = """
-# Getting started with Taipy GUI
+# GuardGoose
 
-My text: <|{text}|>
+<|button| label = Activate Goose| on_action=activate_goose> <|button| label = I'm Back|on_action= deactivate_goose>
 
-<|{text}|input|>
-
-<|Run local|button|on_action=on_button_action|>
 """
 
+# function to define what happens when the button is pressed
 def on_button_action(state):
     notify(state, 'info', f'The text is: {state.text}')
     state.text = "Button Pressed"
