@@ -1,35 +1,42 @@
 from taipy import Gui
 from taipy.gui import Html
+from datetime import datetime
+
+
+thiefalert = """
+<taipy:text>{datetime.date}</taipy:text> <taipy:text>{datetime.time}</taipy:text>
+<taipy:text>{"You're device is in motion. Honking in progress."}</taipy:text> 
+"""
+susalert = """
+<center><taipy:part>
+<taipy:text>{datetime.date}</taipy:text> <taipy:text>{datetime.time}</taipy:text>
+<taipy:text>{"There's seems to be someone near your device"}</taipy:text> 
+</taipy:part></center>
+"""
 
 htmlpage = Html("""
-<title>Guard Goose</title>
-<h1>Notifications</h1>
 
-<taipy:pane anchor="top">
+<h1>Notifications</h1>
+<center>
 <taipy:button>
-i
+NEW NOTIFICATION
 </taipy:button>
-</taipy:pane>
+</center>
 
 <center><taipy:layout>
-
-<br></br>
-<br></br>
-<taipy:input>{"name"}</taipy:input>
-<br></br>
-<taipy:input>{"uni"}</taipy:input>
-<br></br>
-<taipy:input>{"phone"}</taipy:input>
-<br></br>
-<taipy:input>{"email"}</taipy:input>
-
+<taipy:text></taipy:text>
+<taipy:text></taipy:text>
+<taipy:text></taipy:text>
+<taipy:text></taipy:text>
+<taipy:text></taipy:text>
+<taipy:text></taipy:text>
+<taipy:text></taipy:text>
+<taipy:text></taipy:text>
 </taipy:layout></center>
 
 """)
 
-Gui(htmlpage).run(stylekit = {"light_goose_cream": "#e8ddc0",
-  "dark_brown_goose": "#5f5145",
-  "light_goose_tan": "#bfb299",
-  "goose_black": "#2d2a29",
-  "medium_goose_brown": "#756c5f"
-  }, use_reloader=True, port=5001)
+def getnotifpage():
+    return htmlpage
+
+Gui(htmlpage).run(use_reloader=True, port=5001)
