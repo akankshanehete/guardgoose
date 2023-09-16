@@ -1,4 +1,6 @@
 from taipy import Gui
+import serialcom
+import serial as ser
 
 
 
@@ -29,6 +31,18 @@ notifs = """ Notifications """
 def activate_goose(state):
     #notify(state, 'info', f'The text is: {state.text}')
     state.text = "Goose Activated! On high alert."
+    serialcom.turnOn()
+    while True:
+        serialcom.write((serialcom.deviceStatus).to_bytes(1, byteorder='big'))
+        arduinoData = ser.read()
+
+        if (arduinoData == b'3'):
+            # theft alert
+            print('t')
+        elif (arduinoData == b'2'):
+            # suspicious activity
+            print('s')
+
 
 def deactivate_goose(state):
     #notify(state, 'info', f'The text is: {state.text}')

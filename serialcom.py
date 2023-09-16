@@ -1,10 +1,10 @@
-import serial
+import serial as ser
 import time
 
 # setup
-serialPort = '/dev/cu.usbserial-14210'
+serialPort = '/dev/cu.usbserial-110'
 baudRate = 9600
-serial = serial.Serial(serialPort, baudRate, timeout=1)
+serial = ser.Serial(serialPort, baudRate, timeout=1)
 deviceStatus = 1
 
 def turnOff():
