@@ -6,6 +6,7 @@ from taipy import Gui
 text = "Protecting your study space, one honk at a time!"
 
 root_md = """
+<title>Guard Goose</title>
 <|navbar|>
 #GuardGoose
 """

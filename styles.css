@@ -5,11 +5,7 @@
     --goose_black: #2d2a29;
     --medium_goose_brown: #756c5f;
   }
-
-.title-text{
-    font-family: 'Times New Roman', Times, serif;
-}
-
+  
 .image{
   text-align: center;
   padding-bottom: 20px;
