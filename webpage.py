@@ -10,21 +10,24 @@ stylekit = {
   "light_goose_tan": "#bfb299",
   "goose_black": "#2d2a29",
   "medium_goose_brown": "#756c5f",
-
 }
 
 # Definition of the page
 page = """
 # GuardGoose
-
-<|button| label = Activate Goose| on_action=activate_goose> <|button| label = I'm Back|on_action= deactivate_goose>
+<|{text}|>
+<br></br>
+<|button|class_name=plain|label=Activate Goose|on_action=activate_goose|> <|button|class_name=plain|label=I'm Back|on_action=deactivate_goose|>
 
 """
 
-# function to define what happens when the button is pressed
-def on_button_action(state):
-    notify(state, 'info', f'The text is: {state.text}')
-    state.text = "Button Pressed"
+def activate_goose(state):
+    #notify(state, 'info', f'The text is: {state.text}')
+    state.text = "Goose Activated! On high alert."
+
+def deactivate_goose(state):
+    #notify(state, 'info', f'The text is: {state.text}')
+    state.text = "Goose Deactivated! Have a productive study sesh. "
 
 def on_change(state, var_name, var_value):
     if var_name == "text" and var_value == "Reset":
