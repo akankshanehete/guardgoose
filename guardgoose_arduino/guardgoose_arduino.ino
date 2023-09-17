@@ -7,7 +7,7 @@
 // PINS
 #define RED_EYE_1 23
 #define RED_EYE_2 19
-#define HONK_BUZZER 33
+#define HONK_BUZZER 14
 
 
 // default I2C pins on ESP32: GPIO 22 (SCL) and GPIO 21 (SDA) -> for TOF
@@ -53,7 +53,7 @@ void setup() {
 }
 
 float prev_xaccel, prev_yaccel, prev_zaccel =0;
-float acceleration_threshold = 10; //CHANGE THIS
+float acceleration_threshold = 9.5; //CHANGE THIS
 int prev_dist1, prev_dist2 = 500;
 
 int dist_threshold = 200;
@@ -116,7 +116,7 @@ void run_device() {
   } else {
     redEyesOn(false);
   }
-  delay(1000);
+  delay(500);
 
 }
 
@@ -127,9 +127,12 @@ void suspiciousAlert() {
 
 void theftAlert() {
   Serial.print(3);
-  digitalWrite(HONK_BUZZER,HIGH);
+  tone(HONK_BUZZER, 45, 500);
   delay(1000);
-  digitalWrite(HONK_BUZZER, LOW);
+  tone(HONK_BUZZER, 45, 500);
+  delay(800);
+  tone(HONK_BUZZER, 45, 500);
+  delay(1000);
   redEyesOn(true);
 }
 
