@@ -3,15 +3,15 @@ from taipy.gui import Html
 #import serialcom
 import serial as ser
 
-
-
 # variables that will dyamically change based on input (for example buttons)
 text = "Protecting your study space, one honk at a time!"
 
 root_md = """
 <title>Guard Goose</title>
 <|navbar|>
+
 #Guard🪿Goose
+
 """
 home = """ Home
 <|{text}|>
@@ -24,9 +24,6 @@ home = """ Home
 <|button|class_name=fullwidth plain|id=deactivate-goose-btn|label=I'm Back|on_action=deactivate_goose|>
 
 """
-
-
-
 
 def activate_goose(state):
     # serialcom.turnOn()
@@ -48,6 +45,7 @@ def activate_goose(state):
 def deactivate_goose(state):
     # serialcom.turnOff()
     # serialcom.writeToSer()
+
     state.text = "Goose Deactivated! Have a productive study sesh. "
 
 def on_change(state, var_name, var_value):
@@ -90,8 +88,6 @@ notifs = """
 # Notifications
 
 """
-
-
 
 pages = {
     "/": root_md,
