@@ -4,6 +4,9 @@
     --light_goose_tan: #bfb299;
     --goose_black: #2d2a29;
     --medium_goose_brown: #756c5f;
+    --faintred: #ff968a;
+    --darkred: #8f0e00;
+
   }
 
 .image{
@@ -37,17 +40,25 @@
 }
 
 .card-bg {
-  margin-bottom: 10px;
-  margin-top: 10px;
+  padding-bottom: 20px;
+  padding-top: 20px;
   background-color: var(--light_goose_cream);
   border-color: var(--dark_brown_goose);
   border: 2px solid var(--dark_brown_goose);
 }
 
 .newcard-bg {
-  margin-bottom: 10px;
-  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
   background-color: var(--light_goose_tan);
   border-color: var(--dark_brown_goose);
   border: 2px solid var(--dark_brown_goose);
+}
+
+.bigalert-bg{
+  padding-bottom: 20px;
+  padding-top: 20px;
+  background-color: var(--faintred);
+  border: 2px solid var(--darkred);
+
 }

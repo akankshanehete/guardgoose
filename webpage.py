@@ -26,8 +26,6 @@ home = """ Home
 """
 
 
-
-
 def activate_goose(state):
     # serialcom.turnOn()
     # serialcom.writeToSer()
@@ -89,9 +87,56 @@ profile = Html("""
 notifs = """ 
 # Notifications
 
+<|layout|columns=1|
+<|card newcard-bg|
+%s
+{: .m1}
+|>
+>
+<|layout|columns=1 1|
+<|card card-bg|
+1 hour ago\n
+Person detected near device!
+{: .m1}
+|>
+<|card card-bg|
+2 hours ago\n
+Person detected near device!
+{: .m1}
+|>
+<|card card-bg|
+2 hours ago\n
+Person detected near device!
+{: .m1}
+|>
+<|card card-bg|
+7 hours ago\n
+Person detected near device!
+{: .m1}
+|>
+<|card card-bg|
+11 hours ago\n
+Person detected near device!
+{: .m1}
+|>
+<|card bigalert-bg|
+13 hours ago\n
+Attention! Your device has been moved!
+{: .m1}
+|>
+<|card card-bg|
+16 hours ago\n
+Person detected near device!
+{: .m1}
+|>
+<|card card-bg|
+17 hours ago\n
+Person detected near device!
+{: .m1}
+|>
+|>
+
 """
-
-
 
 pages = {
     "/": root_md,
