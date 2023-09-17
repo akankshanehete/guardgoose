@@ -86,7 +86,10 @@ profile = Html("""
 
 """)
                
-notifs = """ Notifications """
+notifs = """ 
+# Notifications
+
+"""
 
 
 
