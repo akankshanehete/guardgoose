@@ -30,8 +30,10 @@ notifs = """ Notifications """
 
 def activate_goose(state):
     #notify(state, 'info', f'The text is: {state.text}')
-    state.text = "Goose Activated! On high alert."
     serialcom.turnOn()
+    serialcom.writeToSer()
+    state.text = "Goose Activated! On high alert."
+    
     while True:
         serialcom.write((serialcom.deviceStatus).to_bytes(1, byteorder='big'))
         arduinoData = ser.read()
@@ -46,6 +48,8 @@ def activate_goose(state):
 
 def deactivate_goose(state):
     #notify(state, 'info', f'The text is: {state.text}')
+    serialcom.turnOff()
+    serialcom.writeToSer()
     state.text = "Goose Deactivated! Have a productive study sesh. "
 
 def on_change(state, var_name, var_value):

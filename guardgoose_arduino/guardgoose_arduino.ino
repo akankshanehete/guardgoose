@@ -53,7 +53,7 @@ void setup() {
 }
 
 float prev_xaccel, prev_yaccel, prev_zaccel =0;
-float acceleration_threshold = 0.9; //CHANGE THIS
+float acceleration_threshold = 10; //CHANGE THIS
 int prev_dist1, prev_dist2 = 500;
 
 int dist_threshold = 200;
@@ -85,19 +85,18 @@ void run_device() {
   /* Laptop has been moved */
   // if the laptop screen is physically tilted (movement is detected), then red eyes and honking
   imu::Vector<3> accel_value = bno.getVector(Adafruit_BNO055::VECTOR_ACCELEROMETER);
+  int acc_mag = sqrt(sq(accel_value.x()) + sq(accel_value.y()) + sq(accel_value.z()));
   
   /* Serial.print("accel values: ");
   Serial.print(accel_value.x());
   Serial.print(", ");
   Serial.print(accel_value.y());
   Serial.print(", ");
-  Serial.println(accel_value.z()); */
-  if (accel_value.x()>=prev_xaccel){
-    theftAlert();
-  }
-  prev_xaccel = accel_value.x();
+  Serial.println(accel_value.z());
+
+  /*prev_xaccel = accel_value.x();
   prev_yaccel = accel_value.y();
-  prev_zaccel = accel_value.z();
+  prev_zaccel = accel_value.z();*/
 
   /* Someone is approaching the laptop */
   int distance = tof.read();
@@ -109,17 +108,21 @@ void run_device() {
   prev_dist2 = prev_dist1;
   prev_dist1 = distance;
 
-  if (avg_dist < dist_threshold) {
+  /* check values and send alert if necessary */
+  if (acc_mag>=acceleration_threshold){
+    theftAlert();
+  } else if (avg_dist < dist_threshold) {
     suspiciousAlert();
-    redEyesOn(true);
   } else {
     redEyesOn(false);
   }
   delay(1000);
+
 }
 
 void suspiciousAlert() {
   Serial.print(2);
+  redEyesOn(true);
 }
 
 void theftAlert() {
@@ -127,6 +130,7 @@ void theftAlert() {
   digitalWrite(HONK_BUZZER,HIGH);
   delay(1000);
   digitalWrite(HONK_BUZZER, LOW);
+  redEyesOn(true);
 }
 
 void redEyesOn(bool on) {
