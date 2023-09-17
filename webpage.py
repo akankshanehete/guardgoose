@@ -2,6 +2,7 @@ from taipy import Gui
 from taipy.gui import Html
 #import serialcom
 import serial as ser
+import serialcom
 
 
 
@@ -11,7 +12,7 @@ text = "Protecting your study space, one honk at a time!"
 root_md = """
 <title>Guard Goose</title>
 <|navbar|>
-#Guard🪿Goose
+#Guard🦆Goose
 """
 home = """ Home
 <|{text}|>
@@ -27,13 +28,12 @@ home = """ Home
 
 
 def activate_goose(state):
-    # serialcom.turnOn()
-    # serialcom.writeToSer()
+    serialcom.turnOn()
+    serialcom.writeToSer()
     state.text = "Goose Activated! On high alert."
     
     # while True:
-    #     serialcom.write((serialcom.deviceStatus).to_bytes(1, byteorder='big'))
-    #     arduinoData = ser.read()
+    #     arduinoData = serialcom.serial.read()
 
     #     if (arduinoData == b'3'):
     #         # theft alert
@@ -44,8 +44,8 @@ def activate_goose(state):
 
 
 def deactivate_goose(state):
-    # serialcom.turnOff()
-    # serialcom.writeToSer()
+    serialcom.turnOff()
+    serialcom.writeToSer()
     state.text = "Goose Deactivated! Have a productive study sesh. "
 
 def on_change(state, var_name, var_value):
@@ -89,13 +89,13 @@ notifs = """
 
 <|layout|columns=1|
 <|card newcard-bg|
-%s
+Attention! Your device has been moved!
 {: .m1}
 |>
 >
 <|layout|columns=1 1|
 <|card card-bg|
-1 hour ago\n
+1 min ago\n
 Person detected near device!
 {: .m1}
 |>

@@ -7,7 +7,7 @@
 // PINS
 #define RED_EYE_1 23
 #define RED_EYE_2 19
-#define HONK_BUZZER 33
+#define HONK_BUZZER 14
 
 
 // default I2C pins on ESP32: GPIO 22 (SCL) and GPIO 21 (SDA) -> for TOF
@@ -50,6 +50,7 @@ void setup() {
   tof.setDistanceMode(VL53L1X::Short);
   tof.setMeasurementTimingBudget(20000);
   tof.startContinuous(50);
+  // Serial.println("TOF GOOD");
 }
 
 float prev_xaccel, prev_yaccel, prev_zaccel =0;
@@ -59,7 +60,7 @@ int prev_dist1, prev_dist2 = 500;
 int dist_threshold = 200;
 int avg_dist = 500;
 
-bool device_on = true;
+bool device_on = false;
 int appData = -1;
 
 void loop() {  
@@ -69,11 +70,13 @@ void loop() {
   }
   if (appData == 1) {
     device_on = true;
+    // Serial.println("DEVICE ON");
   } else if (appData == 0) {
     device_on = false;
+    // Serial.println("DEVICE OFF");
   }
 
-  if (device_on) {
+ if (device_on) {
     run_device();    
   } else {
     redEyesOn(false);
@@ -100,6 +103,7 @@ void run_device() {
 
   /* Someone is approaching the laptop */
   int distance = tof.read();
+  // Serial.println(distance);
   if (tof.timeoutOccurred()) { Serial.print(" TIMEOUT"); }
   /* Serial.print("distance (mm): ");
   Serial.println(distance); */
