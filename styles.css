@@ -5,11 +5,23 @@
     --goose_black: #2d2a29;
     --medium_goose_brown: #756c5f;
   }
-  
+
 .image{
   text-align: center;
   padding-bottom: 20px;
   padding-top: 20px;
+}
+
+.page-header-text{
+  text-align: center;
+  color: var(--dark_brown_goose);
+  font-size: 30px;
+}
+
+.input-field{
+  background-color: var(--light_goose_cream);
+  border: 2px solid var(--dark_brown_goose);
+  border-radius: 15px;
 }
 
 #activate-goose-btn {

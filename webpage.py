@@ -1,5 +1,6 @@
 from taipy import Gui
-import serialcom
+from taipy.gui import Html
+#import serialcom
 import serial as ser
 
 
@@ -10,7 +11,7 @@ text = "Protecting your study space, one honk at a time!"
 root_md = """
 <title>Guard Goose</title>
 <|navbar|>
-#GuardGoose
+#Guard🪿Goose
 """
 home = """ Home
 <|{text}|>
@@ -25,37 +26,68 @@ home = """ Home
 """
 
 
-profile = """ Profile """
-notifs = """ Notifications """
+
 
 def activate_goose(state):
-    #notify(state, 'info', f'The text is: {state.text}')
-    serialcom.turnOn()
-    serialcom.writeToSer()
+    # serialcom.turnOn()
+    # serialcom.writeToSer()
     state.text = "Goose Activated! On high alert."
     
-    while True:
-        serialcom.write((serialcom.deviceStatus).to_bytes(1, byteorder='big'))
-        arduinoData = ser.read()
+    # while True:
+    #     serialcom.write((serialcom.deviceStatus).to_bytes(1, byteorder='big'))
+    #     arduinoData = ser.read()
 
-        if (arduinoData == b'3'):
-            # theft alert
-            print('t')
-        elif (arduinoData == b'2'):
-            # suspicious activity
-            print('s')
+    #     if (arduinoData == b'3'):
+    #         # theft alert
+    #         print('t')
+    #     elif (arduinoData == b'2'):
+    #         # suspicious activity
+    #         print('s')
 
 
 def deactivate_goose(state):
-    #notify(state, 'info', f'The text is: {state.text}')
-    serialcom.turnOff()
-    serialcom.writeToSer()
+    # serialcom.turnOff()
+    # serialcom.writeToSer()
     state.text = "Goose Deactivated! Have a productive study sesh. "
 
 def on_change(state, var_name, var_value):
     if var_name == "text" and var_value == "Reset":
         state.text = ""
         return
+
+# profile page variables
+
+profilepic = "IMG_0002-modified.png"
+name = "Kristine"
+uni = "McMaster University"
+phone = "6479694546"
+email = "kristine.uchendu@gmail.com"
+
+profile = Html("""
+
+<center>                           
+<p class="page-header-text">Your Profile</p>
+</center> 
+
+<center><taipy:part >
+
+<taipy:image width="200px">{profilepic}</taipy:image>
+
+<br></br>               
+<taipy:input class="input-field">{name}</taipy:input>
+<br></br>
+<taipy:input class="input-field">{uni}</taipy:input>
+<br></br>
+<taipy:input class="input-field">{phone}</taipy:input>
+<br></br>
+<taipy:input class="input-field">{email}</taipy:input>
+
+</taipy:part></center>
+
+""")
+               
+notifs = """ Notifications """
+
 
 
 pages = {
