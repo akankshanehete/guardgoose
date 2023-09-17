@@ -5,13 +5,11 @@
     --goose_black: #2d2a29;
     --medium_goose_brown: #756c5f;
   }
-  
 .image{
   text-align: center;
   padding-bottom: 20px;
   padding-top: 20px;
 }
-
 .card-bg {
   margin-bottom: 10px;
   margin-top: 10px;
@@ -26,6 +24,17 @@
   background-color: var(--light_goose_tan);
   border-color: var(--dark_brown_goose);
   border: 2px solid var(--dark_brown_goose);
+
+.page-header-text{
+  text-align: center;
+  color: var(--dark_brown_goose);
+  font-size: 30px;
+}
+
+.input-field{
+  background-color: var(--light_goose_cream);
+  border: 2px solid var(--dark_brown_goose);
+  border-radius: 15px;
 }
 
 #activate-goose-btn {
@@ -38,4 +47,20 @@
     background-color: var(--medium_goose_brown);
     border-color: var(--dark_brown_goose);
     border: 2px solid var(--dark_brown_goose);
+}
+  
+.card-bg {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  background-color: var(--light_goose_cream);
+  border-color: var(--dark_brown_goose);
+  border: 2px solid var(--dark_brown_goose);
+}
+
+.newcard-bg {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  background-color: var(--light_goose_tan);
+  border-color: var(--dark_brown_goose);
+  border: 2px solid var(--dark_brown_goose);
 }
