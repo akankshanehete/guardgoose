@@ -12,6 +12,22 @@
   padding-top: 20px;
 }
 
+.card-bg {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  background-color: var(--light_goose_cream);
+  border-color: var(--dark_brown_goose);
+  border: 2px solid var(--dark_brown_goose);
+}
+
+.newcard-bg {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  background-color: var(--light_goose_tan);
+  border-color: var(--dark_brown_goose);
+  border: 2px solid var(--dark_brown_goose);
+}
+
 #activate-goose-btn {
     background-color: var(--light_goose_tan);
     border-color: var(--dark_brown_goose);

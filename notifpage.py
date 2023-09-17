@@ -2,41 +2,75 @@ from taipy import Gui
 from taipy.gui import Html
 from datetime import datetime
 
+goosestatus = 'o';
+latest = "Nothing to see here.";
 
-thiefalert = """
-<taipy:text>{datetime.date}</taipy:text> <taipy:text>{datetime.time}</taipy:text>
-<taipy:text>{"You're device is in motion. Honking in progress."}</taipy:text> 
-"""
-susalert = """
-<center><taipy:part>
-<taipy:text>{datetime.date}</taipy:text> <taipy:text>{datetime.time}</taipy:text>
-<taipy:text>{"There's seems to be someone near your device"}</taipy:text> 
-</taipy:part></center>
-"""
+if goosestatus == "s":
+    latest = "Now\nPerson detected near device!"
+elif goosestatus == "t":
+    latest = "Now\nAttention! Your device has been moved!"
+else:
+    latest = "Nothing to see here."
 
-htmlpage = Html("""
 
-<h1>Notifications</h1>
-<center>
-<taipy:button>
-NEW NOTIFICATION
-</taipy:button>
-</center>
 
-<center><taipy:layout>
-<taipy:text></taipy:text>
-<taipy:text></taipy:text>
-<taipy:text></taipy:text>
-<taipy:text></taipy:text>
-<taipy:text></taipy:text>
-<taipy:text></taipy:text>
-<taipy:text></taipy:text>
-<taipy:text></taipy:text>
-</taipy:layout></center>
+page = """
 
-""")
+# Notifications
+
+<|layout|columns=1|
+<|card newcard-bg|
+%s
+{: .m1}
+|>
+>
+<|layout|columns=1 1|
+<|card card-bg|
+1 hour ago\n
+Person detected near device!
+{: .m1}
+|>
+<|card card-bg|
+2 hours ago\n
+Person detected near device!
+{: .m1}
+|>
+<|card card-bg|
+2 hours ago\n
+Person detected near device!
+{: .m1}
+|>
+<|card card-bg|
+7 hours ago\n
+Person detected near device!
+{: .m1}
+|>
+<|card card-bg|
+11 hours ago\n
+Person detected near device!
+{: .m1}
+|>
+<|card card-bg|
+13 hours ago\n
+Attention! Your device has been moved!
+{: .m1}
+|>
+<|card card-bg|
+16 hours ago\n
+Person detected near device!
+{: .m1}
+|>
+<|card card-bg|
+17 hours ago\n
+Person detected near device!
+{: .m1}
+|>
+|>
+
+""" % (latest)
 
 def getnotifpage():
-    return htmlpage
+    return page
 
-Gui(htmlpage).run(use_reloader=True, port=5001)
+Gui(page, css_file="styles.css").run( use_reloader=True, port=5001, dark_mode=False)
+
